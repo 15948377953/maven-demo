@@ -9,7 +9,6 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
-import javax.servlet.jsp.tagext.PageData;
 
 @Controller
 public class LoginController {
@@ -19,12 +18,9 @@ public class LoginController {
 
     @RequestMapping(value="/login")
     public ModelAndView Login(String userName,ModelAndView mv,HttpSession session){
-        System.out.println(userName);
         User user=userService.getUserByUserName(userName);
         if(user!=null){
-            System.out.println(".");
             //登录成功，将user对象设置到HttpSession作用范围域中
-            System.out.println("++++++++++++++++++++++++++++++");
             session.setAttribute("user", user);
             //转发到main请求
             mv.addObject("id",user.getId());
