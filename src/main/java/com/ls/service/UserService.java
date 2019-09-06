@@ -8,4 +8,9 @@ public interface UserService {
 
     //添加一条数据
     public int insert(User user);
+
+    //根据userName查找
+
+    public User getUserByUserName(String userName);
+
 }

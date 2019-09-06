@@ -29,4 +29,9 @@ public class UserServiceImpl implements UserService {
         return this.userDao.insert(user);
     }
 
+    @Override
+    public User getUserByUserName(String userName) {
+        // TODO Auto-generated method stub
+        return this.userDao.selectByUserName(userName);
+    }
 }
