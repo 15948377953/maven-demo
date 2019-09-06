@@ -22,6 +22,7 @@ public class LoginController {
         System.out.println(userName);
         User user=userService.getUserByUserName(userName);
         if(user!=null){
+            System.out.println(".");
             //登录成功，将user对象设置到HttpSession作用范围域中
             System.out.println("++++++++++++++++++++++++++++++");
             session.setAttribute("user", user);
