@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ls.dao.DepartmentDao">
+    <sql id="table_name">
+        tbl_dept
+    </sql>
+    <sql id="select_fields">
+        dept_id , dept_name, dept_leader
+    </sql>
+    <resultMap id="deptResult" type="com.ls.pojo.Department">
+        <id column="dept_id" property="deptId"></id>
+        <result column="dept_name" property="deptName"></result>
+        <result column="dept_leader" property="deptLeader"></result>
+    </resultMap>
+
+    <select id="findByPage" parameterType="Map" resultMap="deptResult">
+        SELECT
+          <include refid="select_fields"></include>
+        FROM
+            <include refid="table_name"></include>
+            <if test="start!=null and size!=null">
+                limit #{start},#{size}
+            </if>
+    </select>
+
+    <select id="selectDepartmentList" parameterType="com.ls.pojo.Department" resultMap="deptResult">
+        select <include refid="select_fields"></include>
+        from <include refid="table_name"></include>
+    </select>
+
+    <select id="selectCount" resultType="int">
+        SELECT COUNT(*) FROM
+          <include refid="table_name"></include>
+    </select>
+
+    <update id="updateDeptById" parameterType="com.ls.pojo.Department">
+        UPDATE
+        <include refid="table_name"></include>
+        SET
+        dept_name = #{department.deptName, jdbcType = VARCHAR},
+        dept_leader = #{department.deptLeader, jdbcType = VARCHAR}
+        WHERE
+        dept_id = #{deptId}
+    </update>
+
+    <delete id="deleteDeptById" parameterType="com.ls.pojo.Department">
+        delete from
+        <include refid="table_name"></include>
+        where
+        dept_id = #{deptId}
+    </delete>
+
+</mapper>

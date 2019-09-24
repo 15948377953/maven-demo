@@ -35,7 +35,7 @@
     });
     //跳转到部门页面
     $(".dept_info").click(function () {
-        $(this).attr("href", "/hrms/dept/getDeptList");
+        $(this).attr("href", "/dept/getDeptList");
     });
     //员工清零这个功能暂未实现
     $(".emp_clearall_btn").click(function () {
